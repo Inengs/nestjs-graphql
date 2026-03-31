@@ -1,0 +1,166 @@
+openapi: 3.0.3
+info:
+  title: NestJS Blog API
+  description: Simple blogging platform API (GraphQL / Learning purpose)
+  version: 0.1.0
+servers:
+  - url: http://localhost:3000/graphql
+paths:
+  /users:
+    get:
+      summary: Fetch all users
+      responses:
+        '200':
+          description: List of users
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - email
+                - password
+      responses:
+        '201':
+          description: User created successfully
+  /users/{id}:
+    get:
+      summary: Get user by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: User details
+        '404':
+          description: User not found
+  /posts:
+    get:
+      summary: Fetch all posts
+      responses:
+        '200':
+          description: List of posts
+    post:
+      summary: Create a new post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+                authorId:
+                  type: string
+              required:
+                - title
+                - content
+                - authorId
+      responses:
+        '201':
+          description: Post created successfully
+  /posts/{id}:
+    get:
+      summary: Get post by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Post details
+        '404':
+          description: Post not found
+    put:
+      summary: Update a post
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+      responses:
+        '200':
+          description: Post updated successfully
+        '404':
+          description: Post not found
+    delete:
+      summary: Delete a post
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: Post deleted successfully
+        '404':
+          description: Post not found
+  /posts/{id}/comments:
+    get:
+      summary: Get all comments for a post
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: List of comments
+    post:
+      summary: Add a comment to a post
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                authorId:
+                  type: string
+              required:
+                - content
+                - authorId
+      responses:
+        '201':
+          description: Comment added successfully
