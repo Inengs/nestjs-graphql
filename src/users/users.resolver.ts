@@ -7,12 +7,14 @@ export class UsersResolver {
   constructor(private usersService: UsersService) {}
 
   @Query(() => [User], { name: 'users' })
-  findAll(): User[] {
+  async findAll(): Promise<User[]> {
     return this.usersService.findAll();
   }
 
   @Query(() => User, { name: 'user' })
-  findOne(@Args('id', { type: () => Int }) id: number): User | undefined {
+  async findOne(
+    @Args('id', { type: () => Int }) id: number,
+  ): Promise<User | null> {
     return this.usersService.findOne(id);
   }
 }

@@ -3,6 +3,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'; // Apollo is 
 import { join } from 'path'; // used for building file paths
 import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { UsersModule } from './users/users.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'), //  NestJS will automatically generate your GraphQL schema file at src/schema.gql based on your code.
     }),
     UsersModule,
+    PrismaModule,
   ],
 })
 export class AppModule {}
