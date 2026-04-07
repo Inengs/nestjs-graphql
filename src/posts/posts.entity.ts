@@ -19,5 +19,5 @@ export class Post {
   userId: number;
 
   @Field(() => User)
-  author: User;
+  author?: User;
 }
