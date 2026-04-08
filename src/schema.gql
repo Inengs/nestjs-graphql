@@ -8,7 +8,74 @@ type User {
   email: String!
 }
 
+type Post {
+  id: Int!
+  title: String!
+  content: String!
+  createdAt: DateTime!
+  userId: Int!
+  author: User!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type CommentType {
+  id: Int!
+  content: String!
+  createdAt: DateTime!
+  userId: Int!
+  postId: Int!
+  author: User!
+  post: Post!
+}
+
 type Query {
   users: [User!]!
   user(id: Int!): User!
+  posts: [Post!]!
+  post(id: Int!): Post!
+  comments: [CommentType!]!
+  comment(id: Int!): CommentType!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
+  deletePost(id: Int!): Post!
+  createComment(createCommentInput: CreateCommentInput!): CommentType!
+  updateComment(id: Int!, updateCommentInput: UpdateCommentInput!): CommentType!
+  deleteComment(id: Int!): CommentType!
+}
+
+input CreateUserInput {
+  username: String!
+  email: String!
+}
+
+input CreatePostInput {
+  title: String!
+  content: String!
+  userId: Float!
+}
+
+input UpdatePostInput {
+  title: String
+  content: String
+  userId: Float
+}
+
+input CreateCommentInput {
+  content: String!
+  userId: Float!
+  postId: Float!
+}
+
+input UpdateCommentInput {
+  content: String
+  userId: Float
+  postId: Float
 }
