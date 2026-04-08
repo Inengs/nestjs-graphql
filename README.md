@@ -17,6 +17,7 @@ Exposes queries and mutations for managing Users, Posts and Comments.
 - Users — register and fetch users
 - Posts — create, read, update and delete posts
 - Comments — add comments to posts
+- Observability - jaeger, loki, prometheus etc
 
 ## Getting Started
 
