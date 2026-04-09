@@ -4,19 +4,19 @@ import { User } from '../users/user.entity';
 @ObjectType()
 export class Post {
   @Field(() => Int)
-  id: number;
+  id!: number;
 
   @Field()
-  title: string;
+  title!: string;
 
   @Field()
-  content: string;
+  content!: string;
 
   @Field(() => Date)
-  createdAt: Date;
+  createdAt!: Date;
 
   @Field(() => Int)
-  userId: number;
+  userId!: number;
 
   @Field(() => User)
   author?: User;

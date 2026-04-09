@@ -9,18 +9,15 @@ export class PrismaService
 {
   constructor() {
     // const sqlite = new Database('./prisma/dev.db');
-    const adapter = new PrismaBetterSqlite3({ url: './prisma/dev.db' });
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    const adapter = new PrismaBetterSqlite3({ url: './dev.db' });
     super({ adapter });
   }
 
   async onModuleInit() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     await this.$connect();
   }
 
   async onModuleDestroy() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     await this.$disconnect();
   }
 }
