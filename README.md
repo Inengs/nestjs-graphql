@@ -24,6 +24,8 @@ Exposes queries and mutations for managing Users, Posts and Comments.
 npm install
 npm run start:dev
 
+# Using docker
+
 Server runs at http://localhost:3000/graphql
 
 ## Project Status
