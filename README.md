@@ -9,25 +9,46 @@ Exposes queries and mutations for managing Users, Posts and Comments.
 - NestJS
 - GraphQL (Code First approach)
 - Apollo Server
-- PostgreSQL (coming soon)
-- TypeORM (coming soon)
+- SQLite (via Prisma)
+- Prisma ORM v7
 
-## Planned Features
+## Observability Stack
+
+- Prometheus — metrics scraping
+- Grafana — dashboards and visualization
+- Jaeger — distributed tracing
+- Loki — log aggregation
+- OpenTelemetry — instrumentation and export
+
+## Features
 
 - Users — register and fetch users
-- Posts — create, read, update and delete posts
-- Comments — add comments to posts
-- Observability - jaeger, loki, prometheus etc
+- Posts — full CRUD with author relation
+- Comments — full CRUD with author and post relations
 
 ## Getting Started
 
+### Local Development
+
+```bash
 npm install
+npx prisma generate
+npx prisma migrate dev
 npm run start:dev
+```
 
-# Using docker
+### With Docker (full stack including observability)
 
-Server runs at http://localhost:3000/graphql
+```bash
+docker-compose up -d
+```
+
+GraphQL Playground: http://localhost:3000/graphql
+Grafana: http://localhost:3001
+Prometheus: http://localhost:9090
+Jaeger: http://localhost:16686
 
 ## Project Status
 
-🚧 In progress
+✅ CRUD complete
+🚧 Observability in progress
